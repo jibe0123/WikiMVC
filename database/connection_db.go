@@ -1,31 +1,34 @@
 package database
 
 import (
-	"github.com/caarlos0/env/v6"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"os"
+	"time"
 )
 
-// Config for DB connection
-type Config struct {
-	DbHost     string `env:"DB_HOST"`
-	DbName     string `env:"MYSQL_DATABASE"`
-	DbUser     string `env:"MYSQL_USER"`
-	DbPassword string `env:"MYSQL_PASSWORD"`
-}
 
 func Connect() (*gorm.DB, error) {
-	cfg := Config{}
+	user := os.Getenv("MYSQL_USER")
+	pwd := os.Getenv("MYSQL_PASSWORD")
+	database := os.Getenv("MYSQL_DATABASE")
+	host := os.Getenv("DB_HOST")
 
-	env.Parse(&cfg)
+	dsn := user + ":" + pwd + "@tcp("+ host +")/" + database + "?parseTime=true&charset=utf8"
 
-	dsn := "host="+ cfg.DbHost +" port=3306 user="+ cfg.DbUser +" dbname="+ cfg.DbName +" password="+ cfg.DbPassword +""
+	var err error
 
-	db, err := gorm.Open("postgres", dsn)
+	for i:=1; i <= 3; i++ {
+		db, err := gorm.Open("mysql", dsn)
 
-	if err != nil {
-		return nil, err
-	} else {
-		return db, nil
+		if err == nil {
+			fmt.Println("Connected to database")
+			return db,nil
+		}
+		fmt.Println(err)
+		time.Sleep(10 * time.Second)
 	}
+
+	return nil, err
 }
