@@ -44,6 +44,24 @@ var routes = Routes{
 		HandlerFunc: controller.GetArticles,
 	},
 	Route{
+		Name:        "article",
+		Method:      "GET",
+		Pattern:     "/article/{id}",
+		HandlerFunc: controller.GetArticle,
+	},
+	Route{
+		Name:        "new_article",
+		Method:      "POST",
+		Pattern:     "/article/new",
+		HandlerFunc: controller.ArticleFormNew,
+	},
+	Route{
+		Name:        "new_article",
+		Method:      "GET",
+		Pattern:     "/article/new",
+		HandlerFunc: controller.CreateArticle,
+	},
+	Route{
 		Name:        "export csv",
 		Method:      "GET",
 		Pattern:     "/export-csv",
