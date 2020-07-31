@@ -9,16 +9,16 @@ import (
 func connectTest(t *testing.T) {
 	tests := []struct {
 		name         string
-		desscription string
+		description string
 		want         string
 	}{
 		{
-			desscription: "Is there errors",
+			description: "Is there errors",
 			want:         "No errors in err",
 		},
 		{
 			name:         "error",
-			desscription: "Is there errors",
+			description: "Is there errors",
 			want:         "Database configuration error",
 		},
 	}
