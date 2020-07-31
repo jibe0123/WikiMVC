@@ -7,11 +7,7 @@ import (
 	"net/http"
 )
 
-/**
- *
- * Call database to get all articles
- *
- */
+
 func GetArticles() ([]models.Article, error) {
 	articles, err := models.GetArticles()
 	if err != nil {
@@ -22,11 +18,7 @@ func GetArticles() ([]models.Article, error) {
 	return articles, nil
 }
 
-/**
- *
- * Call database to get article
- *
- */
+
 func GetArticle(article_id int) (models.Article, error) {
 	article, err := models.GetArticle(article_id)
 	if err != nil {
@@ -37,11 +29,7 @@ func GetArticle(article_id int) (models.Article, error) {
 	return article, nil
 }
 
-/**
- *
- * Display all articles page in a browser
- *
- */
+
 func RenderArticles(w http.ResponseWriter) {
 	articles, err := GetArticles()
 	if err != nil {

@@ -19,10 +19,9 @@ func Connect() (*gorm.DB, error) {
 
 	env.Parse(&cfg)
 
-	dsn := cfg.DbUser + ":" + cfg.DbPassword + "@" + cfg.DbHost + "/" + cfg.
-		DbName + "?parseTime=true&charset=utf8"
+	dsn := "host="+ cfg.DbHost +" port=3306 user="+ cfg.DbUser +" dbname="+ cfg.DbName +" password="+ cfg.DbPassword +""
 
-	db, err := gorm.Open(dsn)
+	db, err := gorm.Open("postgres", dsn)
 
 	if err != nil {
 		return nil, err
