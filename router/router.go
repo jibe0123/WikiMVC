@@ -37,4 +37,16 @@ var routes = Routes{
 		Pattern:     "/",
 		HandlerFunc: controller.Index,
 	},
+	Route{
+		Name:        "all_articles",
+		Method:      "GET",
+		Pattern:     "/articles",
+		HandlerFunc: controller.GetArticles,
+	},
+	Route{
+		Name:        "export csv",
+		Method:      "GET",
+		Pattern:     "/export-csv",
+		HandlerFunc: controller.ExportCsv,
+	},
 }
