@@ -37,7 +37,7 @@ func RenderArticles(w http.ResponseWriter) {
 	}
 
 	var render Render = Render{
-		ParseFiles: []string{"web/articles.tmpl", "web/base.tmpl"},
+		ParseFiles: []string{"web/templates/articles/list.html"},
 		Writer:     w,
 		Data:       articles,
 	}
