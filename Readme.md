@@ -42,7 +42,6 @@ Before cloning make sure you have docker installed.Then clone the project and fo
 docker-compose up
 ```
 
-
 ## Features
 
 |                            | 🔰 OK            | ◾ KO         |
